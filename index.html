@@ -9,14 +9,64 @@
   <title>Happy Birthday</title>
 </head>
 <body>
-  <div class="card">
-    <img src="./birthday.svg" alt="birthday" class="birthday">
-    <div class="text">
-      <h1>Happy Birthday!</h1>
-      <p>I hope you have a wonderful birthday😘</p>
-      <p class="muted">- Priti</p>
+    <div class="clock">
+    <h2>birthday countdown!</h2>
+  <div class="time">
+    <div><span id="hour">00</span>
+        <span>Hours</span></div>
+    <div><span id="minutes">00</span>
+        <span>Minutes</span></div>
+    <div><span id="seconds">00</span>
+        <span>Seconds</span></div>
     </div>
-    <div class="space"></div>
   </div>
+</div>
+  <script type="text/javascript">
+    var countDate= new Date('Aug 22, 2022 00:00:00').getTime();
+    function clock() {
+      var hours =  document.getElementById('hour'); 
+      var minutes =  document.getElementById('minutes');
+      var seconds =  document.getElementById('seconds');
+
+      var h= new Date().getHours();
+      var m= new Date().getMinutes();
+      var s= new Date().getSeconds();
+
+      hours.innerHTML = h;
+      minutes.innerHTML = m;
+      seconds.innerHTML = s;
+      
+    }
+
+    var interval= setInterval(clock,1000);
+    
+    function birthday() {
+        var now = new Date().getTime();
+        gap = countDate - now;
+
+        var second =1000;
+        var minute=second * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+
+        var d = Math.floor(gap / (day));
+        var h = Math.floor((gap % (day))/(hour));
+        var m = Math.floor((gap % (hour))/(minute));
+        var w = Math.floor((gap % (minute))/(second));
+
+        if(d==0){
+            if(h==0){
+                if(m==0){
+                    if(w==0){
+                        location.replace("./birthday_wish.html");
+                    }
+                }
+            }
+        }
+    }
+setInterval(function(){
+    birthday();
+},1000)
+  </script>
 </body>
 </html>
